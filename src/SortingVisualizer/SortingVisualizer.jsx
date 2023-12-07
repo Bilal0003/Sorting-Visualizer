@@ -6,12 +6,9 @@ import { toHaveFocus } from '@testing-library/jest-dom/matchers';
 
 export default class SortingVisualizer extends React.Component {
     constructor(props) {
-        super(props);
+        super(props); this.state = { array: [],}; }
 
-        this.state = {
-            array: [],
-        };
-    }
+    
 
     componentDidMount() {
         this.resetArray();
@@ -25,6 +22,13 @@ export default class SortingVisualizer extends React.Component {
         this.setState({ array });
     }
 
+    animate(swaps) {
+        if (swaps.length == 0) { return;}
+        const [i,j] = swaps.shift();
+        [this.state.array[i], this.state.array[j]] = [ this.state.array[j], this.state.array[i]];
+        //render();
+        //setTimeout(animate(swaps),20);
+    }
 
     BubbleSort() {
 
@@ -73,3 +77,4 @@ function TestingSortedArray() {
 
 
 }
+
