@@ -10,3 +10,9 @@
     display : inline-block;
     margin : 0 1px;
 }
+
+.bubble-button{
+    color : blue;
+    position: absolute;
+    background-color: aqua;
+}
