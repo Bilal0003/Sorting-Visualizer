@@ -1,0 +1,35 @@
+#container{
+    height: 200px;
+    
+    
+}
+
+#buttons-container{
+    margin-top: 20px;
+}
+
+#titre{
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+}
+
+.bar{
+    width: 2px;
+    background-Color: white; /* chosen by Massilya*/
+    display : inline-block;
+    margin : 0 1px;
+}
+
+:root{
+    --bg-color : #0f1923;
+
+}
+
+body{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--bg-color);
+}
