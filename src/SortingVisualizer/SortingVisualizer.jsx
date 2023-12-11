@@ -37,25 +37,27 @@ export default class SortingVisualizer extends React.Component {
 
     }
 
-    render() {
-        const { array } = this.state;
+    showbars(){
+        
+        
+    }
 
+    render() {
+        
+        const { array } = this.state;
         return (
-            <div className="array-container">
+                <div>
+                <div className="arraycontainer">
                 {array.map((value, idx) => (
                     <div
                         className="array-bar"
                         key={idx}
                         style={{ height: `${value}px` }}></div>
                 ))}
+                
                 <button onClick={() => this.resetArray()}>Generer un nouveau vecteur.</button>
-                <button class="btn" onClick={() => this.BubbleSort()}>
-                    <span class="inner">
-                        <span class="slide"></span>
-                        <span class="content"> Bubble Sort</span>
-                    </span>
-                </button>
-            </div>
+                <button class="btn" onClick={() => this.BubbleSort()}>Bubble Sort</button>
+                </div></div>
         );
     }
 }

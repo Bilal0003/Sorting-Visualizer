@@ -21,11 +21,13 @@ function animate(swaps){
     if(swaps.length==0) return;
 
     //on stock le premier couple d'indice a swaper (donc les deux premieres valeurs actuel du vecteur swaps) que l'on stock dans le vecteur temporaire [i,j]    
-    const [i,j] = swaps.shift();
+    const move = swaps.shift();
+    const [i,j] = move.indices;
     //on effectue le swap des deux bars correspondantes
     [array[i],array[j]] = [array[j],array[i]];
     // a chaque fois que je swap, je reaffiche le resultat
-    showbars();
+    
+    showbars(move);
     //timeout pour avoir le temps de visualiser les swaps
     setTimeout(function(){
         animate(swaps);
@@ -52,13 +54,15 @@ let sorted=false;
 return swaps;
 }
 
-function showbars(){
+function showbars(move){
     container.innerHTML="";
 for ( let i = 0; i<array.length; i++){
     const bar = document.createElement("div");
     bar.style.height = array[i]*150+"%";
     bar.classList.add("bar");
+    if(swaps && move.indices.includes(i)) bar.style.backgroundColor = "red";
     container.appendChild(bar);
+    
+}
 }
 
-}
