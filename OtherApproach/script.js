@@ -1,21 +1,48 @@
-const n = 50;
-const array = [];
-let audioCtx = null;
+let n = 50;
+let array = [];
+var audioCtx = null;
+var running = false;
+let delay = 10;
+
+
 
 initialise();
 
+
+
+
+function updateSpeed() {
+    delay = document.getElementById('time_slider').value;
+
+}
+
+function updateArraySize() {
+    n = document.getElementById('arr_sz').value;
+    initialise();
+}
+
 function initialise() {
-    for (let i = 0; i < n; i++) {
-        //generer un num aleatoire entre 0.05 et 1.
-        array[i] = (Math.random() * 1) + 0.05;
+    
+    if(n >= array.length) {
+
+        for (let i = 0; i < n; i++) {
+            //generer un num aleatoire entre 0.05 et 1.
+            array[i] = (Math.random() * 1) + 0.05;
+    
+        }
+    }
+    else {
+        array = array.slice(0,n);
+        initialise();
     }
     showbars();
+    
 }
+
 
 function playBubble() {
     const swaps = BubbleSort([...array]);
     animate(swaps);
-    //showbars();
 }
 
 function playSelection() {
@@ -24,9 +51,55 @@ function playSelection() {
     
 }
 
+function playBS2(){
+    runBtn(BS2, array);
+}
+
+function playSS2(){
+    runBtn(SS2,array);
+}
+
 function playMerge() {
-    const swaps = MergeSort([...array]);
-    animate(swaps);
+    runBtn(mergeSort, array, 0, array.length);
+}
+
+async function runBtn(sort, ...args) {
+    running = true;
+    await sort(...args);
+    showbars();
+    running = false;
+}
+
+
+async function mergeSort(arr, start, end) {
+    if (start >= end - 1) return;
+    const mid = start + Math.floor((end - start) / 2);
+
+    await mergeSort(arr, start, mid);
+    await mergeSort(arr, mid, end);
+
+    const cache = Array(end - start).fill(arr[0]);
+    let k = mid;
+
+    for (let i = start, r = 0; i < mid; r++, i++) {
+        if (!running) return;
+        while (k < end && arr[k] < arr[i]) {
+            cache[r] = arr[k];
+            r++;
+            k++;
+        }
+        cache[r] = arr[i];
+    }
+
+    for (let i = 0; i < k - start; i++) {
+        if (!running) return;
+        arr[i + start] = cache[i];
+        await sleep(delay); // Adjust the delay as needed
+        showbars({ indices: [i + start] }); // Refresh the visualization for each swap
+        playNote(200 + array[i] * 500);
+        playNote(200 + array[start] * 500);
+    }
+   
     
 }
 
@@ -49,7 +122,7 @@ function animate(swaps) {
     //timeout pour avoir le temps de visualiser les swaps
     setTimeout(function () {
         animate(swaps);
-    }, 10);
+    }, delay);
 }
 
 function BubbleSort(array) {
@@ -72,12 +145,34 @@ function BubbleSort(array) {
     return swaps;
 }
 
+async function BS2(array) {
+    let sorted = false;
+    let c = 0;
+    while (!sorted) {
+        sorted = true;
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] > array[i + 1]) {
+                c = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = c;
+                showbars( { indices : [ i, i+1 ]});
+                await sleep(delay);
+                sorted = false;
+            }
+        }
+    }
+    
+    //showbars();
+    //return swaps;
+}
+
 function SelectionSort(array) {
     const swaps = [];
     for (let i = 0; i < (array.length) - 1; i++) {
         let min = i;
         for (let j = i + 1; j < array.length; j++) {
-            if (array[j] < array[min]) min = j;
+            if (array[j] < array[min]) 
+                min = j;
         }
         if (min !== i) {
             let temp = array[i];
@@ -89,51 +184,28 @@ function SelectionSort(array) {
     return swaps;
 }
 
-
-function MergeSort(array) {
-    const swaps = [];
-
-
-    function merge(left, right, startIdx) {
-        let ans = [];
-        let leftidx = 0;
-        let rightidx = 0;
-
-        while (leftidx < left.length && rightidx < right.length) {
-            if (left[leftidx] < right[rightidx]) {
-                ans.push(left[leftidx]);
-                leftidx++;
-            }
-            else {
-                ans.push(right[rightidx]);
-                rightidx++;
-            }
+async function SS2(array) {
+    for (let i = 0; i < (array.length) - 1; i++) {
+        let min = i;
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[j] < array[min]) 
+                min = j;
         }
-        swaps.push({ indices: [startIdx + leftidx, startIdx + left.length + rightidx - 1] });
-        return ans.concat(left.slice(leftidx)).concat(right.slice(rightidx));
-    }
-
-    let chunks = array.map(item => [item]);
-
-    while (chunks.length > 1) {
-        let newChunks = [];
-
-        // Merge pairs of adjacent chunks
-        for (let i = 0; i < chunks.length; i += 2) {
-            if (i + 1 < chunks.length) {
-                newChunks.push(merge(chunks[i], chunks[i + 1], i));
-            } else {
-                newChunks.push(chunks[i]);
-            }
+        if (min !== i) {
+            let temp = array[i];
+            array[i] = array[min];
+            array[min] = temp;
+            showbars({ indices: [i, min] });
+            await sleep(delay);
         }
-
-        chunks = newChunks;
     }
-    return swaps;
-
 }
 
-
+function sleep(delay) {
+    return new Promise(resolve => {
+        setTimeout(resolve, delay);
+    });
+}
 
 function showbars(move) {
     container.innerHTML = "";
@@ -141,12 +213,14 @@ function showbars(move) {
         const bar = document.createElement("div");
         bar.style.height = array[i] * 150 + "%";
         bar.classList.add("bar");
+        bar.style.width = Window.innerWidth / array.length;
         if (move && move.indices.includes(i)) bar.style.backgroundColor = "red";
         container.appendChild(bar);
-
+       
     }
     ;
 }
+
 
 function playNote(freq) {
     if (audioCtx == null) {
@@ -161,7 +235,7 @@ function playNote(freq) {
     osc.frequency.value = freq;
     osc.start();
     osc.stop(audioCtx.currentTime + dur);
-    const node = audioCtx.createGain();
+    var node = audioCtx.createGain();
     node.gain.value = 0.1;
     node.gain.linearRampToValueAtTime(
         0, audioCtx.currentTime + dur
@@ -169,3 +243,17 @@ function playNote(freq) {
     osc.connect(node);
     node.connect(audioCtx.destination);
 }
+
+function MuteWindow(){
+    if (node.gain.value === 0) {
+        // Unmute
+        node.gain.value = 1;
+        document.getElementById("muteButton").innerText = "Mute Audio";
+      } else {
+        // Mute
+        node.gain.value = 0;
+        document.getElementById("muteButton").innerText = "Unmute Audio";
+      }
+}
+
+document.getElementById("muteButton").addEventListener("click", toggleMute);

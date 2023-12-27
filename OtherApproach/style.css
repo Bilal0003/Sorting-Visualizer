@@ -1,7 +1,6 @@
 #container{
     height: 200px;
-    
-    
+       
 }
 
 
@@ -21,12 +20,35 @@
     font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
 }
 
+#size{
+  font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+  font-size: 15px;
+  font-weight: 700;
+  color:     #ffffff;
+
+}
+
+#speed{
+  font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+  font-size: 15px;
+  font-weight: 700;
+  color:     #ffffff;
+}
+
 .bar{
     width: 10px;
-    background-Color: white; /* chosen by Massilya*/
+    background-Color: rgba(255, 255, 255, 0.411); /* chosen by Massilya*/
     display : inline-block;
     margin : 0 1px;
     border: red;
+}
+
+.sortedbar{
+  width: 10px;
+  background-Color: green; /* chosen by Massilya*/
+  display : inline-block;
+  margin : 0 1px;
+  border: red;
 }
 
 :root{
@@ -44,7 +66,7 @@ body{
 
 .btn {
   appearance: none;
-  background-color:   #000000; 
+  background-color:   #096289; 
   border: 2px solid #1A1A1A;
   border-radius: 15px;
   box-sizing: border-box;
