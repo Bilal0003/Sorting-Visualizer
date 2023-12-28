@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <title>Sorting Visualizer</title>
     <link rel ="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.5" />
 </head>
 
 <body>
     <h1 id ="titre">  Sorting Visualizer </h1>
     <nav>
-        <div class="col" id="input">
+        <div class="sliders" id="input">
             <span id="size">Size
                 <input id="arr_sz" type="range" min="5" max="100" step=1 value=60 oninput="updateArraySize() ">
             </span>
@@ -18,13 +19,12 @@
         </div>
     </nav>
 
-
     <div id="container"></div>
 
     <hr>
 
     <div id="buttons-container">
-        <button id="muteButton" onclick="MuteWindow()"> Mute Audio</button>
+        <button class="btn" id="muteButton" onclick="MuteWindow()"> Mute Audio</button>
         <button class="btn" onclick="initialise()"> Generate New Array</button>
         <button class="btn" onclick=" playBubble() "> BubbleSort </button>
         <button class="btn" onclick=" playMerge() "> MergeSort </button>

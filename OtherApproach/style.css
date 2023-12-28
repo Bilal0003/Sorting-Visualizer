@@ -1,79 +1,117 @@
-#container{
-    height: 200px;
-       
+#container {
+  position: relative;
+  height: 200px;
+  
 }
 
+#buttons-container {
+  margin-top: 8%;
+  text-align: center;
+  display: inline-flex;
+  position: relative;
 
-
-#buttons-container{
-    margin-top: 100px;
-    text-align: center;
-    display: inline-flex;
-    
-    
 }
 
-#titre{
-    color: white;
-    font-size: 2rem;
-    font-weight: 700;
-    font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+#titre {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(
+    --font-family,
+    CircularSp,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
+    var(--fallback-fonts, sans-serif)
+  );
 }
 
-#size{
-  font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+.sliders{
+  position: relative;
+  left : -100%;
+  height: 50%;
+}
+
+#size {
+  font-family: var(
+    --font-family,
+    CircularSp,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
+    var(--fallback-fonts, sans-serif)
+  );
   font-size: 15px;
   font-weight: 700;
-  color:     #ffffff;
-
+  color: #ffffff;
 }
 
-#speed{
-  font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+#speed {
+  font-family: var(
+    --font-family,
+    CircularSp,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
+    var(--fallback-fonts, sans-serif)
+  );
   font-size: 15px;
   font-weight: 700;
-  color:     #ffffff;
+  color: #ffffff;
 }
 
-.bar{
-    width: 10px;
-    background-Color: rgba(255, 255, 255, 0.411); /* chosen by Massilya*/
-    display : inline-block;
-    margin : 0 1px;
-    border: red;
-}
-
-.sortedbar{
+.bar {
   width: 10px;
-  background-Color: green; /* chosen by Massilya*/
-  display : inline-block;
-  margin : 0 1px;
+  background-color: rgba(255, 255, 255, 0.411); /* chosen by Massilya*/
+  display: inline-block;
+  margin: 0 1px;
   border: red;
 }
 
-:root{
-    --bg-color : #0f1923;
-
+.sortedbar {
+  width: 10px;
+  background-color: green; /* chosen by Massilya*/
+  display: inline-block;
+  margin: 0 1px;
+  border: red;
 }
 
-body{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--bg-color);
+:root {
+  --bg-color: #0f1923;
 }
 
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--bg-color);
+}
 
 .btn {
   appearance: none;
-  background-color:   #096289; 
-  border: 2px solid #1A1A1A;
+  background-color: #096289;
+  border: 2px solid #1a1a1a;
   border-radius: 15px;
   box-sizing: border-box;
-  color:     #ffffff;
+  color: #ffffff;
   cursor: pointer;
   display: inline-block;
-  font-family: var(--font-family,CircularSp,CircularSp-Arab,CircularSp-Hebr,CircularSp-Cyrl,CircularSp-Grek,CircularSp-Deva,var(--fallback-fonts,sans-serif));
+  font-family: var(
+    --font-family,
+    CircularSp,
+    CircularSp-Arab,
+    CircularSp-Hebr,
+    CircularSp-Cyrl,
+    CircularSp-Grek,
+    CircularSp-Deva,
+    var(--fallback-fonts, sans-serif)
+  );
   font-size: 10px;
   font-weight: 700;
   line-height: normal;
@@ -84,7 +122,7 @@ body{
   padding: 5px 15px;
   text-align: center;
   text-decoration: none;
-  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
