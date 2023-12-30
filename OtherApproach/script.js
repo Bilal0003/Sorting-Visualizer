@@ -10,8 +10,16 @@ function updateSpeed() {
   delay = document.getElementById("time_slider").value;
 }
 
+function updateWidth() {
+  let width = document.getElementById("container").value;
+  let topbox = document.getElementById("top-box");
+  document.topbox.style.setProperty("--width", width + "%");
+  topbox.style.color = "red";
+}
+
 function updateArraySize() {
   n = document.getElementById("arr_sz").value;
+
   initialise();
 }
 
@@ -193,9 +201,9 @@ function showbars(move) {
   container.innerHTML = "";
   for (let i = 0; i < array.length; i++) {
     const bar = document.createElement("div");
-    bar.style.height = array[i] * 150 + "%";
+    bar.style.height = array[i] * 80 + "%";
     bar.classList.add("bar");
-    bar.style.width = Window.innerWidth / array.length;
+    //bar.style.width = Window.innerWidth / array.length;
     if (move && move.indices.includes(i)) bar.style.backgroundColor = "red";
     container.appendChild(bar);
   }
@@ -230,5 +238,3 @@ function MuteWindow() {
     document.getElementById("muteButton").innerText = "Unmute Audio";
   }
 }
-
-document.getElementById("muteButton").addEventListener("click", MuteWindow);
