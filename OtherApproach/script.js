@@ -228,13 +228,10 @@ function playNote(freq) {
 }
 
 function MuteWindow() {
-  if (node.gain.value === 0) {
-    // Unmute
-    node.gain.value = 1;
-    document.getElementById("muteButton").innerText = "Mute Audio";
-  } else {
-    // Mute
-    node.gain.value = 0;
-    document.getElementById("muteButton").innerText = "Unmute Audio";
-  }
+  audio = document.getElementById("audio").firstElementChild.innerHTML === "volume_off" | 0;
+    updateAudioIcon();
+
+    fetch("/audio/", {
+        method: "PUT",
+    })
 }
