@@ -23,6 +23,19 @@ function updateArraySize() {
   initialise();
 }
 
+function Shufflecurrent() {
+  const Shuffeled = shuffle(array);
+  showbars();
+}
+
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 function initialise() {
   if (n >= array.length) {
     for (let i = 0; i < n; i++) {
@@ -228,10 +241,13 @@ function playNote(freq) {
 }
 
 function MuteWindow() {
-  audio = document.getElementById("audio").firstElementChild.innerHTML === "volume_off" | 0;
-    updateAudioIcon();
+  audio =
+    (document.getElementById("audio").firstElementChild.innerHTML ===
+      "volume_off") |
+    0;
+  updateAudioIcon();
 
-    fetch("/audio/", {
-        method: "PUT",
-    })
+  fetch("/audio/", {
+    method: "PUT",
+  });
 }
