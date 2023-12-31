@@ -138,7 +138,8 @@ body {
   align-items: center;
   flex-direction: column;
   /*background-color: var(--bg-color);*/
-  background: linear-gradient(55deg, #212121 0%, #212121 40%, #323232 calc(40% + 1px), #323232 60%, #008F95 calc(60% + 1px), #008F95 70%, #14FFEC calc(70% + 1px), #14FFEC 100%);
+  /*teal : 14FFEC */
+  background: linear-gradient(55deg, #212121 0%, #212121 40%, #323232 calc(40% + 1px), #323232 60%, #008F95 calc(60% + 1px), #008F95 70%, #056459 calc(70% + 1px), #056459 100%);
 }
 
 
