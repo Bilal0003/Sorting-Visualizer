@@ -1,5 +1,6 @@
 #container {
   display: flex;
+  width: 50%;
   top: 20%;
   align-items: flex-end;
   justify-content: space-between;
@@ -13,6 +14,7 @@
   padding: 5px;
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
+
 
 #titre {
   color: white;
@@ -40,26 +42,50 @@
   width: 100%;
 }
 
+
+@media (max-width: 360px){
+  #titre{
+    font-size: 20px;
+    position: absolute;
+    left : 10%;
+
+  }
+  #sorting-panel{
+    border: 5px solid white;
+    width:50%;
+  }
+  #container{
+    height: 30%;
+    left: 10%;
+  }
+  #bottom-box{
+    border: 5px solid white;
+  }
+} 
+
 #top-box {
+  max-width: 40%;
   top: 15%;
-  position: relative;
+  position: relative;  
   align-items: center;
   background-color: #9cc4b2;
   border-radius: 15px ;
   justify-content: center;
   border-radius: 29px;
-background: linear-gradient(145deg, #1f556e, #1a475d);
-box-shadow:  18px 18px 36px #173f52,
+  border: 2px solid red;
+  background: linear-gradient(145deg, #1f556e, #1a475d);
+  box-shadow:  18px 18px 36px #173f52,
              -18px -18px 36px #235f7c;
 }
 
 .sliders {
-  display: flex;
   position: relative;
-  height: 50%;
+  margin: auto;
+  height : 50%;
+  border: 1px solid white;
   align-items: center;
   justify-content: center;
-  width: 600px;
+  width: 70%;
 }
 
 #bottom-box {
@@ -67,7 +93,7 @@ box-shadow:  18px 18px 36px #173f52,
   display: flex;
   justify-content: space-around;
   top: 75%;
-  width: 90%;
+  width: 50%;
   height: 10%;
   display: flex;
   background-color: #9cc4b2;
@@ -77,6 +103,11 @@ box-shadow:  18px 18px 36px #173f52,
   box-shadow:  18px 18px 36px #173f52,
              -18px -18px 36px #235f7c;
 }
+
+#arr_sz, #time_slider{
+  width: 30%;
+}
+
 
 
 #size {
@@ -139,8 +170,9 @@ body {
   flex-direction: column;
   /*background-color: var(--bg-color);*/
   /*teal : 14FFEC */
-  background: linear-gradient(55deg, #212121 0%, #212121 40%, #323232 calc(40% + 1px), #323232 60%, #008F95 calc(60% + 1px), #008F95 70%, #056459 calc(70% + 1px), #056459 100%);
+  background: radial-gradient(circle at 0% 8%, rgba(0, 74, 115, 1) 0%, rgba(0, 17, 73, 1) 100%);
 }
+
 
 
 .btn {
